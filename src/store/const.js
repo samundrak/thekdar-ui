@@ -1,0 +1,10 @@
+export const ADD_TASK = 'ADD_TASK';
+export const ADD_TASKS = 'ADD_TASKS';
+export const REMOVE_TASKS = 'REMOVE_TASKS';
+export const REMOVE_TASK = 'REMOVE_TASK'
+export const ADD_WORKER = 'ADD_WORKER';
+export const ADD_WORKERS = 'ADD_WORKERS';
+export const REMOVE_WORKER = 'REMOVE_WORKER';
+export const REMOVE_WORKERS = 'REMOVE_WORKERS';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const UPDATE_WORKER = 'UPDATE_WORKER';

@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import * as actions from './store/actions';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import state from './store/state';
-import Actions from './store/Actions';
-import logo from './logo.svg';
+import SimpleLayout from './SimpleLayout';
+import Dashboard from './pages/Dashboard';
+import Workers from './pages/Workers';
+import Worker from './pages/Worker';
+import Tasks from './pages/Tasks';
+import Task from './pages/Task';
 import './App.css';
+
 import Socket from './Socket';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ...state
-    }
-    this.actions = new Actions(this.state, this.setState);
-    this.socket = new Socket();
+  }
+
+  componentDidMount() {
+    this.socket = new Socket(this.props.actions);
     this.socket.listen();
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <SimpleLayout>
+        <div>
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/workers" component={Workers} />
+          <Route exact path="/tasks" component={Tasks} />
+        </div>
+      </SimpleLayout>
     );
   }
 }
-
-export default App;
+const mapStateToProps = state => ({
+  app: state.app,
+});
+const mapActionsToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch),
+});
+export default withRouter(connect(mapStateToProps, mapActionsToProps)(App));
