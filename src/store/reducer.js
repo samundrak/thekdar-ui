@@ -11,7 +11,7 @@ export function app(state = initialState, action) {
       break;
     case consts.REMOVE_TASK:
       const index = state.tasks.findIndex(item => item.id === action.taskId);
-      if (index < 0) return;
+      if (index < 0) return state;
       state = remove(state, `tasks.${index}`);
       break;
     case consts.ADD_TASKS:

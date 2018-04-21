@@ -11,11 +11,11 @@ thekdar.addPluggin(
   })
 );
 
-// setInterval(() => {
-//   const task = new Task();
-//   task.setData({
-//     message: 'hello world',
-//   });
-//   task.setType(Task.TYPE_FORK);
-//   thekdar.addTask(task);
-// }, 15000);
+setInterval(() => {
+  const task = new Task();
+  task.setData({
+    message: 'hello world',
+  });
+  task.setType(Task.TYPE_FORK);
+  thekdar.addTask(task);
+}, 5000);
