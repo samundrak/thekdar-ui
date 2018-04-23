@@ -22,6 +22,11 @@ module.exports = (server, thekdar) => {
       type: 'workers',
       workers,
     });
+    socket.emit('info', {
+      type: 'info',
+      maxWorkers: thekdar._maxWorkers,
+      maxTaskPerWorker: thekdar._maxTaskPerWorker,
+    });
   });
   return io;
 };

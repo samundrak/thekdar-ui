@@ -6,7 +6,7 @@ import format from 'date-fns/format';
 export default ({ tasks }) => (
   <div>
     <Header as="h3" block>
-      Tasks
+      Tasks ({tasks.length})
     </Header>
     <Table celled>
       <Table.Header>
@@ -19,18 +19,24 @@ export default ({ tasks }) => (
       </Table.Header>
 
       <Table.Body>
-        {tasks.map(task => (
+        {!tasks.length ? (
           <Table.Row>
-            <Table.Cell>{task.id}</Table.Cell>
-            <Table.Cell>{task.type}</Table.Cell>
-            <Table.Cell>{task._workerId}</Table.Cell>
-            <Table.Cell>
-              {distance_in_words_to_now(task.created_at)}
-              <br />
-              <small>{format(task.created_at, 'MM/DD/YYYY h:mm:s')}</small>
-            </Table.Cell>
+            <Table.Cell>No Any tasks running</Table.Cell>
           </Table.Row>
-        ))}
+        ) : (
+          tasks.map((task, index) => (
+            <Table.Row key={index}>
+              <Table.Cell>{task.id}</Table.Cell>
+              <Table.Cell>{task.type}</Table.Cell>
+              <Table.Cell>{task._workerId}</Table.Cell>
+              <Table.Cell>
+                {distance_in_words_to_now(task.created_at)}
+                <br />
+                <small>{format(task.created_at, 'MM/DD/YYYY h:mm:s')}</small>
+              </Table.Cell>
+            </Table.Row>
+          ))
+        )}
       </Table.Body>
     </Table>
   </div>

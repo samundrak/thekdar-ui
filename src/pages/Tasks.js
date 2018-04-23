@@ -1,8 +1,15 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import TaskTable from '../components/TaskTable';
 
 class Tasks extends React.Component {
   render() {
-    return <div>Hello i am tasks</div>;
+    return <TaskTable tasks={this.props.app.tasks} />;
   }
 }
-export default Tasks;
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+export default withRouter(connect(mapStateToProps)(Tasks));

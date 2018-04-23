@@ -33,3 +33,15 @@ export function removeWorker(workeId) {
     workeId,
   };
 }
+export function addFeed(feed) {
+  return {
+    type: type.ADD_FEED,
+    feed,
+  };
+}
+export function updateInfo(infos) {
+  return {
+    type: type.INFOS,
+    infos,
+  };
+}

@@ -8,5 +8,5 @@ process.on('message', data => {
       workerId: data.workerId,
       data: {},
     });
-  }, Math.round(Math.random() * 5000) + 3000);
+  }, Math.round(Math.random() * 5000) + 60000);
 });

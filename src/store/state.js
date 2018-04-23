@@ -1,4 +1,9 @@
 export default {
-    workers: [],
-    tasks: [],
-}
+  workers: [],
+  tasks: [],
+  feeds: [],
+  infos: {
+    maxTaskPerWorker: 0,
+    maxWorkers: 0,
+  },
+};
