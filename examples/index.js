@@ -18,4 +18,4 @@ setInterval(() => {
   });
   task.setType(Task.TYPE_FORK);
   thekdar.addTask(task);
-}, 60000);
+}, 10000);

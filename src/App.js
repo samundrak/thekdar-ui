@@ -31,6 +31,8 @@ class App extends Component {
         <div>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/workers" component={Workers} />
+          <Route exact path="/worker/:workerId" component={Worker} />
+          <Route exact path="/task/:taskId" component={Task} />
           <Route exact path="/tasks" component={Tasks} />
         </div>
       </SimpleLayout>

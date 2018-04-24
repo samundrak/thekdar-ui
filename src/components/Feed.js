@@ -1,25 +1,24 @@
 import React from 'react';
-import { Card, Feed } from 'semantic-ui-react';
+import { Header, Card, Feed, Icon, Segment } from 'semantic-ui-react';
 
 export default ({ feeds }) => (
-  <Card fluid={true}>
-    <Card.Content>
-      <Card.Header>Recent Activity</Card.Header>
-    </Card.Content>
-    <Card.Content>
-      <Feed>
-        {feeds.map((feed, index) => (
-          <Feed.Event key={index}>
-            <Feed.Content>
-              <Feed.Date content={feed.time} />
-              <Feed.Summary>
-                {feed.message}
-                <hr />
-              </Feed.Summary>
-            </Feed.Content>
-          </Feed.Event>
-        ))}
-      </Feed>
-    </Card.Content>
-  </Card>
+  <Segment>
+    <Header as="h4">Recent Activity</Header>
+    <Feed>
+      {feeds.map((feed, index) => (
+        <Feed.Event key={index}>
+          <Feed.Label>
+            <Icon name={feed.type} />
+          </Feed.Label>
+          <Feed.Content>
+            <Feed.Summary>
+              {feed.message}
+              <Feed.Date>{feed.time}</Feed.Date>
+              <hr />
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+      ))}
+    </Feed>
+  </Segment>
 );

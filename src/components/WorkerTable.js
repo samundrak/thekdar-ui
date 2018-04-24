@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Icon, Label, Menu, Table } from 'semantic-ui-react';
 import distance_in_words_to_now from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
+import { Link } from 'react-router-dom';
 
 function getNumberOfTasks(tasks = [], workerId) {
   return (
@@ -38,7 +39,9 @@ const WorkerTable = ({ workers, tasks }) => (
                 <Icon name="circle" color="red" />
               )}
             </Table.Cell>
-            <Table.Cell>{worker._id}</Table.Cell>
+            <Table.Cell>
+              <Link to={`/worker/${worker._id}`}> {worker._id}</Link>
+            </Table.Cell>
             <Table.Cell>{worker._type}</Table.Cell>
             <Table.Cell>
               {getNumberOfTasks(tasks, worker._id).length}
