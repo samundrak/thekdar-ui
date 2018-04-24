@@ -26,8 +26,15 @@ export function app(state = initialState, action) {
       state = set(state, 'feeds', [action.feed, ...state.feeds.slice(0, 19)]);
       break;
     case consts.INFOS:
-      console.log('infos', action.infos);
       state = set(state, 'infos', action.infos);
+      break;
+    case consts.USAGE:
+      if (!action.workerId) return state;
+      const workerIndex = state.workers.findIndex(
+        item => item._id === action.workerId
+      );
+      if (workerIndex < 0) return state;
+      state = set(state, `workers.${workerIndex}.usage`, action.usage);
       break;
     default:
       return state;

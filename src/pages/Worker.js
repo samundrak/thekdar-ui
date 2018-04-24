@@ -5,6 +5,7 @@ import flat from 'flat';
 import Information from '../components/Information';
 import WorkerTable from '../components/WorkerTable';
 import TaskTable from '../components/TaskTable';
+import Usage from '../components/Usage';
 import {
   Header,
   Icon,
@@ -56,6 +57,8 @@ class Worker extends React.Component {
             </Header.Subheader>
           )}
         </Header>
+        {this.state.worker && <Usage usage={this.state.worker.usage} />}
+
         <TaskTable tasks={this.state.tasks} />
         <Information object={this.state.worker} />
       </Segment>

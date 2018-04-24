@@ -10,3 +10,4 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 export const UPDATE_WORKER = 'UPDATE_WORKER';
 export const ADD_FEED = 'ADD_FEED';
 export const INFOS = 'INFOS';
+export const USAGE = 'USAGE';

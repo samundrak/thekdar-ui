@@ -45,3 +45,10 @@ export function updateInfo(infos) {
     infos,
   };
 }
+export function updateWorkerUsage(workerId, usage) {
+  return {
+    type: type.USAGE,
+    workerId,
+    usage,
+  };
+}

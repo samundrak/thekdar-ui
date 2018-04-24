@@ -21,10 +21,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.socket = new Socket(this.props.actions);
+    this.socket = new Socket(this.props.actions, this.props.app);
     this.socket.listen();
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.app.tasks.length !== this.props.app.tasks.length) {
+      window.document.title = `Thekdar UI (${nextProps.app.tasks.length})`;
+    }
+  }
   render() {
     return (
       <SimpleLayout>

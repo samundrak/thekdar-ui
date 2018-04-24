@@ -2,14 +2,13 @@ import distance_in_words_to_now from 'date-fns/distance_in_words_to_now';
 const io = require('socket.io-client');
 
 class Socket {
-  constructor(actions) {
+  constructor(actions, state) {
+    this.state = state;
     this.actions = actions;
     let socketUrl = null;
-    if (process.env.NODE_ENV === 'development') {
-      socketUrl = `http://localhost:5000`;
-    } else {
-      socketUrl = `${window.location.protocol}//${window.location.host}`;
-    }
+    const socketHost = window.localStorage.getItem('socketHost');
+    socketUrl =
+      socketHost || `${window.location.protocol}//${window.location.host}`;
     this.io = io.connect(socketUrl);
   }
 
@@ -77,6 +76,10 @@ class Socket {
             'remove'
           )
         );
+        break;
+      case 'usage':
+        if (!data.usage) return;
+        this.actions.updateWorkerUsage(data.workerId, data.usage);
         break;
       case 'info':
         this.actions.updateInfo(data);
