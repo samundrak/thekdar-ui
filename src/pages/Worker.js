@@ -5,7 +5,16 @@ import flat from 'flat';
 import Information from '../components/Information';
 import WorkerTable from '../components/WorkerTable';
 import TaskTable from '../components/TaskTable';
-import { Header, Icon, Label, Menu, Table, List } from 'semantic-ui-react';
+import {
+  Header,
+  Icon,
+  Label,
+  Menu,
+  Table,
+  List,
+  Segment,
+} from 'semantic-ui-react';
+import distance_in_words_to_now from 'date-fns/distance_in_words_to_now';
 
 class Worker extends React.Component {
   constructor(props) {
@@ -32,19 +41,24 @@ class Worker extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Header as="h3" block>
-          Worker {this.state.workerId}{' '}
+      <Segment>
+        <Header as="h2" icon textAlign="center">
           {this.state.worker &&
           this.state.worker._worker.status === 'running' ? (
             <Icon name="circle" color="green" />
           ) : (
             <Icon name="circle" color="red" />
           )}
+          Worker {this.state.workerId}
+          {this.state.worker && (
+            <Header.Subheader>
+              created {distance_in_words_to_now(this.state.worker.created_at)}
+            </Header.Subheader>
+          )}
         </Header>
         <TaskTable tasks={this.state.tasks} />
         <Information object={this.state.worker} />
-      </div>
+      </Segment>
     );
   }
 }
