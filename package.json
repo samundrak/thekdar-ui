@@ -1,7 +1,6 @@
 {
   "name": "thekdar-ui",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -36,10 +35,7 @@
     "eject": "react-scripts eject"
   },
   "nodemonConfig": {
-    "ignore": [
-      "src/*",
-      "docs/*"
-    ],
+    "ignore": ["src/*", "docs/*"],
     "delay": "2500"
   }
 }
