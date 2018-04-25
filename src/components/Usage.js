@@ -2,7 +2,7 @@ import React from 'react';
 import distance_in_words_to_now from 'date-fns/distance_in_words_to_now';
 import { Header, Icon, Label, Menu, Table } from 'semantic-ui-react';
 import format from 'date-fns/format';
-import prettysize from 'prettysize';
+import prettysize from '../prettysize';
 
 export default ({ usage }) => {
   return (
