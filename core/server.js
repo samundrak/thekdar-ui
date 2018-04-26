@@ -9,14 +9,16 @@ const getPort = require('get-port');
 const basicAuth = require('express-basic-auth');
 var app = express();
 
-// app.use(
-//     basicAuth({
-//         challenge: true,
-//         users: {
-//             [process.env.BASIC_AUTH_USERNAME]: process.env.BASIC_AUTH_PASSWORD,
-//         },
-//     })
-// );
+if (process.env.NODE_ENV === 'production') {
+  app.use(
+    basicAuth({
+      challenge: true,
+      users: {
+        [process.env.BASIC_AUTH_USERNAME]: process.env.BASIC_AUTH_PASSWORD,
+      },
+    })
+  );
+}
 // view engine setup
 
 app.set('views', path.join(__dirname, '../views'));

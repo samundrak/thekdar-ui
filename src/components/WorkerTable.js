@@ -3,6 +3,7 @@ import { Header, Icon, Label, Menu, Table } from 'semantic-ui-react';
 import distance_in_words_to_now from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
+import prettysize from '../prettysize';
 
 function getNumberOfTasks(tasks = [], workerId) {
   return (
@@ -23,6 +24,8 @@ const WorkerTable = ({ workers, tasks }) => (
           <Table.HeaderCell>ID</Table.HeaderCell>
           <Table.HeaderCell>Type</Table.HeaderCell>
           <Table.HeaderCell>Tasks</Table.HeaderCell>
+          <Table.HeaderCell>CPU</Table.HeaderCell>
+          <Table.HeaderCell>Memory</Table.HeaderCell>
           <Table.HeaderCell>Process ID</Table.HeaderCell>
           <Table.HeaderCell>Crashes</Table.HeaderCell>
           <Table.HeaderCell>Created At</Table.HeaderCell>
@@ -45,6 +48,12 @@ const WorkerTable = ({ workers, tasks }) => (
             <Table.Cell>{worker._type}</Table.Cell>
             <Table.Cell>
               {getNumberOfTasks(tasks, worker._id).length}
+            </Table.Cell>
+            <Table.Cell>
+              {worker.usage ? `${worker.usage.cpu}%` : 'N/A'}
+            </Table.Cell>
+            <Table.Cell>
+              {worker.usage ? prettysize(worker.usage.memory) : 'N/A'}
             </Table.Cell>
             <Table.Cell>{worker._worker.pid}</Table.Cell>
             <Table.Cell>{worker._worker.crashes}</Table.Cell>
