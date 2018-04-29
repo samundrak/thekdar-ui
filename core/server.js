@@ -71,6 +71,6 @@ module.exports = ({ configs, thekdar } = {}, done = () => null) => {
     console.log(`Thekdar ui is running on port :${port}`);
     const server = app.listen(port);
     const io = require('./socket')(server, thekdar);
-    done(io);
+    done(io, server);
   });
 };

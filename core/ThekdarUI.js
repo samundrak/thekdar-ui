@@ -19,6 +19,10 @@ class ThekdarUi {
       this.pidUsage();
     }
   }
+  stop() {
+    // Stop http server
+    this.server.close();
+  }
   pidUsage() {
     setInterval(() => {
       const workers = [];
@@ -58,8 +62,9 @@ class ThekdarUi {
   }
 
   startServer() {
-    server(this, io => {
+    server(this, (io, server) => {
       this.io = io;
+      this.server = server;
     });
   }
 }
