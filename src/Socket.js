@@ -84,6 +84,14 @@ class Socket {
       case 'info':
         this.actions.updateInfo(data);
         break;
+      case 'child:message':
+        if (data.data && data.data.type === 'UPLOAD_PROGRESS') {
+          this.actions.updateProgress(
+            data.data.data.progress.fileId,
+            data.data.data.progress
+          );
+        }
+        break;
     }
   }
 }

@@ -36,6 +36,20 @@ export function app(state = initialState, action) {
       if (workerIndex < 0) return state;
       state = set(state, `workers.${workerIndex}.usage`, action.usage);
       break;
+
+    case consts.PROGRESS:
+      try {
+        const tindex = state.tasks.findIndex(
+          item => item.data.meta.uuid === action.fileId
+        );
+        if (tindex < 0) return state;
+        state = set(
+          state,
+          `tasks.${tindex}.progress`,
+          action.progress.progress
+        );
+      } catch (e) {}
+      break;
     default:
       return state;
   }

@@ -17,10 +17,18 @@ export default ({ tasks }) => (
       </Table.Header>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell> ID</Table.HeaderCell>
+          <Table.HeaderCell>ID</Table.HeaderCell>
           <Table.HeaderCell>Type</Table.HeaderCell>
           <Table.HeaderCell>Worker ID</Table.HeaderCell>
+          <Table.HeaderCell>Cloud Type</Table.HeaderCell>
+          <Table.HeaderCell>Url</Table.HeaderCell>
           <Table.HeaderCell>Created At</Table.HeaderCell>
+
+          <Table.HeaderCell>ETA</Table.HeaderCell>
+          <Table.HeaderCell>Remaining</Table.HeaderCell>
+          <Table.HeaderCell>Speed</Table.HeaderCell>
+          <Table.HeaderCell>Transferred</Table.HeaderCell>
+          <Table.HeaderCell>Completed</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -39,10 +47,37 @@ export default ({ tasks }) => (
               <Table.Cell>
                 <Link to={`/worker/${task._workerId}`}> {task._workerId}</Link>
               </Table.Cell>
+              <Table.Cell>{task.data ? task.data.cloud : 'n/a'}</Table.Cell>
+              <Table.Cell>
+                <a
+                  target="_blank"
+                  href={task.data ? task.data.meta.url : '#'}
+                  title={task.data ? task.data.meta.url : '#'}
+                >
+                  url
+                </a>
+              </Table.Cell>
+
               <Table.Cell>
                 {distance_in_words_to_now(task.created_at)}
                 <br />
                 <small>{format(task.created_at, 'MM/DD/YYYY h:mm:s')}</small>
+              </Table.Cell>
+
+              <Table.Cell>
+                {task.progress ? task.progress.eta : 'n/a'}
+              </Table.Cell>
+              <Table.Cell>
+                {task.progress ? task.progress.remaining : 'n/a'}
+              </Table.Cell>
+              <Table.Cell>
+                {task.progress ? task.progress.speed : 'n/a'}
+              </Table.Cell>
+              <Table.Cell>
+                {task.progress ? task.progress.transferred : 'n/a'}
+              </Table.Cell>
+              <Table.Cell>
+                {task.progress ? task.progress.percentage : 'n/a'}
               </Table.Cell>
             </Table.Row>
           ))

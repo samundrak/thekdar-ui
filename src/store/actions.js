@@ -52,3 +52,10 @@ export function updateWorkerUsage(workerId, usage) {
     usage,
   };
 }
+export function updateProgress(fileId, progress) {
+  return {
+    type: type.PROGRESS,
+    fileId,
+    progress,
+  };
+}
