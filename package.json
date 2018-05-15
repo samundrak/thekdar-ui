@@ -10,7 +10,6 @@
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.4",
     "flat": "^4.0.0",
-    "get-port": "^3.2.0",
     "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "pidusage": "^2.0.6",
@@ -35,7 +34,10 @@
     "eject": "react-scripts eject"
   },
   "nodemonConfig": {
-    "ignore": ["src/*", "docs/*"],
+    "ignore": [
+      "src/*",
+      "docs/*"
+    ],
     "delay": "2500"
   }
 }
