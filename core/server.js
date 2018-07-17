@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const cors = require('cors');
-const getPort = require('get-port');
 const basicAuth = require('express-basic-auth');
 var app = express();
 
@@ -67,10 +66,8 @@ app.use(function(err, req, res, next) {
 
 // const configs = { port: 3000 }
 module.exports = ({ configs, thekdar } = {}, done = () => null) => {
-  getPort(configs.port).then(port => {
-    console.log(`Thekdar ui is running on port :${port}`);
-    const server = app.listen(port);
-    const io = require('./socket')(server, thekdar);
-    done(io, server);
-  });
+  console.log(`Thekdar ui is running on port :${configs.port}`);
+  const server = app.listen(configs.port);
+  const io = require('./socket')(server, thekdar);
+  done(io, server);
 };
